@@ -3,33 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Viewer</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    
-    <nav>
-        <ul>
-            <li><a href="/qr-code">QR Code</a></li> <!-- Add this line for the QR Code button -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/qr-code">QR Code</a>
+            </li>
         </ul>
     </nav>
-    
-    {% block content %}
-    <form class="form" method="POST" action="">
-        <label for="urlInput">Enter URL here:</label>
-        <input type="text" id="urlInput" name="url" placeholder="https://example.com">
-        <button type="submit">Submit</button>
-    </form>
-    {% endblock %}
-    
-    
-    {% for title, rating, review_count, description in data %}
-    <h1>{{ title }} </h1>
-    <p> {{ rating }} </p>
-    <p>{{ review_count }}</p>
-    <p>{{ description }}</p>
-    {% endfor %}
 
-    
+    <div class="container mt-3">
+        {% block content %}
+        <form class="form" method="POST" action="">
+            <div class="form-group">
+                <label for="urlInput">Enter URL here:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="urlInput" name="url" placeholder="https://example.com">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="/clear" class="btn btn-danger">Clear</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        {% endblock %}
+        
+        {% for title, rating, review_count, description in data %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h1 class="card-title">{{ title }}</h1>
+                <p class="card-text">{{ rating }}</p>
+                <p class="card-text">{{ review_count }}</p>
+                <p class="card-text">{{ description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

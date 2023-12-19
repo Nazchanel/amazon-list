@@ -121,7 +121,17 @@ def qr_code():
 
 		generate_qr_code(text_to_encode)
 
-		return render_template('qrcode.html') 
+		return render_template('qrcode.html')
 
+@app.route('/clear', methods=['GET', 'POST'])
+def clear_items():
+	global titles, descriptions, ratings, review_counts, url
+	titles = []
+	descriptions = []
+	ratings = []
+	review_counts = []
+	url = ""
+	return render_template('index.html')
+	
 if __name__ == '__main__':
     app.run(debug=True)
