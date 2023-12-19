@@ -1,0 +1,7 @@
+# Testing Jupyter Notebook (Web Scraping)
+*.ipynb
+
+# Generated QR Code
+*.png
+
+__pycache__/

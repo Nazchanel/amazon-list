@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="/qr-code">QR Code</a></li> <!-- Add this line for the QR Code button -->
+        </ul>
+    </nav>
+    
+    {% block content %}
+    <form class="form" method="POST" action="">
+        <label for="urlInput">Enter URL here:</label>
+        <input type="text" id="urlInput" name="url" placeholder="https://example.com">
+        <button type="submit">Submit</button>
+    </form>
+    {% endblock %}
+    
+    
+    {% for title, rating, review_count, description in data %}
+    <h1>{{ title }} </h1>
+    <p> {{ rating }} </p>
+    <p>{{ review_count }}</p>
+    <p>{{ description }}</p>
+    {% endfor %}
+
+    
+</body>
+</html>
